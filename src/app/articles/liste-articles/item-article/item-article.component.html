@@ -1,0 +1,25 @@
+<div class="cardSpace">
+  <div class="card bg-dark text-white">
+    <img src="{{articleItem.imgUrl}}" class="card-img" alt="Image de l'article"
+      onerror="this.onerror=null;this.src='/assets/img/altimg.png';">
+    <div class="card-img-overlay">
+        <div class="row buttonModify justify-content-end">
+            <button mat-fab [routerLink]="[modifierArticleLink, articleItem.id]" class="btn">
+              <mat-icon mat-list-icon>create</mat-icon>
+            </button>
+            <button mat-fab class="btnDel" (click)="deleteArticle(articleItem.id)">
+              <mat-icon mat-list-icon>delete</mat-icon>
+            </button>
+          </div>
+      <div style="cursor: pointer;" [routerLink]="[contentArticleLink, articleItem.id]">
+        <h5 class="card-title d-flex align-items-end">{{articleItem.titre}}</h5>
+        <p class="card-text">Publication : {{articleItem.datePublication | date:"d MMMM yyyy"}}</p>
+        <p>Par {{articleItem.auteur}}</p>
+        <p class="card-text" *ngIf="articleItem.dateModification">Modification : {{articleItem.dateModification | date:"d
+        MMMM yyyy"}}</p>
+        <p class="card-text" *ngIf="!articleItem.dateModification">Aucune modification</p>
+      </div>
+    </div>
+
+  </div>
+</div>

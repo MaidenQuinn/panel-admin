@@ -1,0 +1,26 @@
+<div class="row pagination" fxLayoutAlign="center center">
+  <div ngClass="row col-12 bodyTags justify-content-center">
+    <div fxLayout="column" class="col-8 bodyTagsContent" fxLayoutAlign="center center">
+      <h1>Trier par mot-clé</h1>
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of tagItems" [selectable]="selectable" [ngStyle]="{'cursor': 'pointer'}"
+          [style.background-color]="toggleBackgroundColor(tag)" [style.color]="toggleColor(tag)"
+          [style.border]="setBorderColor(tag)" (click)="selectTag(tag)">
+          {{tag.label}} </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+  <div class="row col-12 justify-content-center">
+    <app-alert></app-alert>
+  </div>
+  <div class="row col-12" fxLayoutAlign="center center">
+    <div *ngFor="let articleItem of activePageDataChunk" class="card-deck col-xl-3 col-md-6">
+      <app-item-article [articleItem]="articleItem" (delete)="getArticleList()"></app-item-article>
+    </div>
+  </div>
+  <div class="row col-12 mt-3 justify-content-center">
+    <mat-paginator paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+      [length]="totalSize" [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

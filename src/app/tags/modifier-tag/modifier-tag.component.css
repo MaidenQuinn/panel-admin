@@ -1,0 +1,39 @@
+.bodyModifierTag {
+  background-color: white;
+  border: 1px solid #e0e7f5;
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: -1px 5px 15px -1px rgba(0, 0, 0, 0.78);
+}
+
+.btn {
+  background-color: white;
+  color: #1f3d7d;
+  font-weight: bolder;
+  box-shadow: 0px 0px 6px 3px rgba(22, 93, 175, 0.78);
+}
+
+.btnDel {
+  background-color: white;
+  color: red;
+  font-weight: bolder;
+  box-shadow: 0px 0px 6px 3px rgba(175, 22, 22, 0.78);
+}
+
+.btn:hover {
+  background-color: #1f3d7d;
+  color: white;
+  font-weight: bolder;
+  box-shadow: 0px 0px 6px 3px rgba(22, 93, 175, 0.78);
+}
+
+.btnDel:hover {
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+  box-shadow: 0px 0px 6px 3px rgba(175, 22, 22, 0.78);
+}
+
+.tagColorInput {
+  color: white;
+}

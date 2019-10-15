@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+
+.roboto {
+  font-family: 'Roboto';
+}
+
+.dosis {
+  font-family: 'Dosis', sans-serif;
+}
+
+.times-new-roman {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.source-sans-pro {
+  font-family: 'Source Sans Pro';
+}
+
+.noto-sans {
+  font-family: 'Noto Sans';
+}
+
+
+.contentArticle h1,
+.contentArticle h2,
+.contentArticle h3,
+.contentArticle h4,
+.contentArticle h5,
+.contentArticle h6 {
+  font-family: 'Source Sans Pro';
+  color: #1f3d7d;
+}
+
+.contentArticle {
+  font-family: 'Noto Sans';
+}

@@ -1,0 +1,154 @@
+<div class="row col-12 justify-content-center m-0 p-0">
+  <div class="container col-md-8 col-11 bodyModifierArticle p-0 p-md-3" novalidate>
+
+    <h3 class="text-center titleArticle" *ngIf="id">Modifier l'article : {{formArticle.value.titre}}</h3>
+    <h3 class="text-center titleArticle" *ngIf="id === undefined">Créer un article</h3>
+
+    <mat-divider class="m-3"></mat-divider>
+
+    <!-- version mobile de la liste des mots clés au dessus du formulaire -->
+    <div class="container-fluid listeTagsDispo d-block d-md-none mb-4">
+      <div fxLayout="column" class="col-md-12 bodyTagsContent" fxLayoutAlign="center center">
+        <h4>Mots clés disponibles</h4>
+        <mat-chip-list>
+          <mat-chip *ngFor="let tag of tagItems" (click)="addTag(tag)"
+            [ngStyle]="{'background-color': tag.color, 'color': 'white', 'cursor': 'pointer'}">
+            {{tag.label}} </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+
+    <form [formGroup]="formArticle" (ngSubmit)="onSubmit(formArticle.value)" class="form">
+
+      <mat-form-field class="chip-list col-12 p-md-0" appearance="outline">
+        <mat-label>Mots clés de l'article</mat-label>
+        <mat-chip-list #chipList class="chips">
+          <mat-chip *ngFor="let tag of formArticle.value.tags;" [removable]="removable" (removed)="removeTag(tag)"
+            (click)="remove(tag)" [ngStyle]="{'background-color': tag.color, 'color': 'white', 'cursor': 'pointer'}">
+            {{ tag.label }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input [matChipInputFor]="chipList" disabled>
+        </mat-chip-list>
+      </mat-form-field>
+
+
+      <div class="row d-flex justify-content-around mb-4">
+        <div class="row col-md-6">
+          <mat-form-field class="form-element col-md-6 pl-md-0" appearance="outline">
+            <mat-label>Date de publication</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Date de publication" formControlName="datePublication"
+              maxlength="10">
+            <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error
+              *ngIf="!formArticle.controls['datePublication'].valid && formArticle.controls['datePublication'].touched">
+              Date de publication requise.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-element col-md-6" appearance="outline">
+            <mat-label>Auteur de l'article</mat-label>
+            <input matInput #auteur placeholder="Auteur de l'article" formControlName="auteur" maxlength="20">
+            <mat-hint>{{auteur.value.length}} / 20</mat-hint>
+            <mat-error *ngIf="!formArticle.controls['auteur'].valid && formArticle.controls['auteur'].touched">
+              Auteur de l'article requis.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="col-12 pl-md-0 m-0">
+            <mat-form-field class="form-element" appearance="outline">
+              <mat-label>Titre de l'article</mat-label>
+              <input #titre matInput placeholder="Titre de l'article" formControlName="titre" maxlength="70">
+              <mat-hint>{{titre.value.length}} / 70</mat-hint>
+              <mat-error *ngIf="!formArticle.controls['titre'].valid && formArticle.controls['titre'].touched">
+                Titre de l'article requis.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row col-md-6 col-12">
+          <mat-form-field class="form-element" appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput #desc placeholder="Description" matTextareaAutosize matAutosizeMinRows="6"
+              matAutosizeMaxRows="6" formControlName="description" maxlength="256"></textarea>
+            <mat-hint>{{desc.value.length}} / 256</mat-hint>
+            <mat-error
+              *ngIf="!formArticle.controls['description'].valid && formArticle.controls['description'].touched">
+              Description de l'article requise.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="container" class="form-element">
+        <angular-editor id="myEditor" [config]="config" formControlName="contenu"></angular-editor>
+        <mat-error *ngIf="!formArticle.controls['contenu'].valid && formArticle.controls['contenu'].touched">
+          Le contenu est requis.
+        </mat-error>
+      </div>
+
+      <div class="mt-4">
+        <mat-form-field class="form-element" appearance="outline">
+          <mat-label>Image</mat-label>
+          <input #imageUrl matInput placeholder="URL de l'image" formControlName="imgUrl" maxlength="500">
+          <mat-hint>{{imageUrl.value.length}} / 500</mat-hint>
+          <mat-error *ngIf="!formArticle.controls['imgUrl'].valid && formArticle.controls['imgUrl'].touched">
+            Met au moins une image !
+          </mat-error>
+        </mat-form-field>
+
+        <mat-expansion-panel fxLayout="column" fxLayoutAlign="center center">
+          <mat-expansion-panel-header fxLayout.gt-sm="row">
+            <mat-panel-title>
+              Aperçu de l'image :
+            </mat-panel-title>
+            <mat-panel-description fxHide.lt-md>
+              Ouvrez le menu pour voir un apperçu de l'image
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div fxLayout.gt-sm="row">
+            <img src="{{formArticle.value.imgUrl}}" alt="">
+          </div>
+        </mat-expansion-panel>
+      </div>
+
+      <div class="row form-element m-0 justify-content-around">
+        <button mat-stroked-button class="button col-4" (click)="retourPage()">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" type="submit" class="button col-4" [disabled]="!formArticle.valid">
+          <mat-icon>done</mat-icon>
+        </button>
+      </div>
+      <div class="row justify-content-center loading">
+        <img *ngIf="loading" class="loadingImg" src="/assets/img/loading.gif" />
+      </div>
+    </form>
+  </div>
+
+  <!-- version web de la liste des mots clé à droite -->
+  <div class="container col-md-3 d-none d-md-block">
+    <div ngClass="row col-12 ml-0 bodyModifierArticle p-md-3 justify-content-center">
+      <div class="col-md-12">
+        <div class="row justify-content-between">
+          <h4>Mots clés disponibles</h4>
+          <mat-icon class="addButton" (click)="toggleCreerTag()">add_circle</mat-icon>
+        </div>
+        <mat-divider class="m-3"></mat-divider>
+        <mat-chip-list>
+          <mat-chip *ngFor="let tag of tagItems" (click)="addTag(tag)"
+            [ngStyle]="{'background-color': tag.color, 'color': 'white', 'cursor': 'pointer'}">
+            {{tag.label}} </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <div *ngIf="showCreerTag" class="d-none d-md-block mt-5">
+      <app-creer-tag (create)="onTagCreated()"></app-creer-tag>
+    </div>
+
+  </div>
+
+
+</div>

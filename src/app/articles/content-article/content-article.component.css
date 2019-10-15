@@ -1,0 +1,59 @@
+.bodyContent {
+    background-color: #fff;
+    padding: 2%;
+  }
+  
+  img {
+    width: 100%;
+  }
+  
+  p {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  
+  a {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  
+  h2 {
+    margin: 5px;
+  }
+  
+  h4 {
+    margin: 5px;
+    color: #1f3d7d;
+  }
+  
+  .descriptionImage {
+    margin: 0;
+    font-style: italic;
+  }
+  
+  .sousTitre {
+    margin-bottom: 3%;
+    color: #1f3d7d;
+  }
+  
+  .tempsLecture {
+    border: 1px solid;
+    background-color: #1f3d7d;
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  
+  
+  .marginSousTitreXs {
+    margin: 3%;
+  }
+  
+  .contenuArticle {
+    margin-top: 40px;
+  }
+  
+  .marginShare {
+    margin-right: 10%;
+  }
+  

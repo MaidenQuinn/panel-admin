@@ -1,0 +1,52 @@
+.form-element {
+  /* padding: 5px 0px 25px 2px; */
+  width: 100%;
+}
+
+.button {
+  margin: 15px;
+}
+
+.button:hover {
+  opacity: 0.8
+}
+
+.addButton {
+  font-size: 32px;
+  color: #1f3d7d;
+  cursor: pointer;
+}
+.listeTagsDispo {
+  background-color: #ededed;
+  padding: 15px;
+}
+
+.bodyModifierArticle {
+  background-color: white;
+  margin-top: 30px;
+  box-shadow: -1px 5px 15px -1px rgba(0, 0, 0, 0.78);
+  border-radius: 7px;
+}
+
+.titleArticle {
+  color: #1f3d7d;
+}
+
+mat-divider {
+  color: #1f3d7d;
+  background-color: #1f3d7d;
+}
+
+.loadingImg {
+  width: 75px;
+  height: 75px;
+}
+
+
+.select-font {
+  display: none;
+}
+
+/* :host /deep/ angular-editor#myEditor .select-font[title="Font Name"]{
+  display: none
+  } */

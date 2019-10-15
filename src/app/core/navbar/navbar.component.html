@@ -1,0 +1,77 @@
+<div class="toolbar-container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="toolbar" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button *ngIf="showNavBar==true" mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="app-name">Panel Admin</h1>
+    </div>
+    <a mat-button *ngIf="showNavBar==false" class="nav-link mx-3" routerLink="{{connexionLink}}">Connexion</a>
+    <a mat-button *ngIf="showNavBar==true" class="nav-link mx-3"
+      (click)="logout()" routerLink="/accueil">Déconnexion</a>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav *ngIf="showNavBar==true" #snav opened class="sidenav" [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon mat-list-icon>assignment</mat-icon>
+              <h6>Articles</h6>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li><a routerLink="{{creerArticleLink}}">Créer un article</a></li>
+            <li><a routerLink="{{listeArticlesLink}}">Liste des articles</a></li>
+          </ul>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon mat-list-icon>comment</mat-icon>
+              <h6>Commentaires</h6>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li><a routerLink="{{listeCommentairesLink}}">Liste des commentaires</a></li>
+            <li><a routerLink="{{validerCommentairesLink}}">Valider les commentaires</a></li>
+          </ul>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon mat-list-icon>account_box</mat-icon>
+              <h6>Clients</h6>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li><a routerLink="{{creerClientLink}}">Créer un client</a></li>
+            <li><a routerLink="{{listeClientsLink}}">Liste des clients</a></li>
+          </ul>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon mat-list-icon>account_box</mat-icon>
+              <h6>Tags</h6>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li><a routerLink="{{listeTagsLink}}">Liste des tags</a></li>
+          </ul>
+        </mat-expansion-panel>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,33 @@
+<div class="bodyModifierTag" *ngIf="tag" novalidate>
+  <form [formGroup]="formTag" (ngSubmit)="onSubmit(formTag.value)" class="form" fxLayout="column">
+
+    <h4>Modifier le tag :</h4>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Nom du tag" formControlName="label" [(ngModel)]="tag.label">
+      <mat-error *ngIf="!formTag.controls['label'].valid && formTag.controls['label'].touched">
+        Le nom du tag est requis.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Couleur du tag" class="tagColorInput" [ngStyle]="{'background-color': color}"
+        formControlName="color"
+        [value]="tag.color"
+        [(ngModel)]="color" 
+        [style.background]="tag.color" 
+        [cpOutputFormat]="'hex'"
+        [colorPicker]="color"
+        (colorPickerChange)="rgbaText=onChangeColorHex8($event);color=$event" />
+      <mat-error *ngIf="!formTag.controls['color'].valid && formTag.controls['color'].touched">
+        La couleur du tag est requise.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="row form-element justify-content-around">
+      <button mat-raised-button class="button btnDel col-4" (click)="deleteTag(tag.id)"><mat-icon>delete</mat-icon></button>
+      <button mat-raised-button type="submit" class="button btn col-4" [disabled]="!formTag.valid"><mat-icon>done</mat-icon></button>
+    </div>
+
+  </form>
+</div>

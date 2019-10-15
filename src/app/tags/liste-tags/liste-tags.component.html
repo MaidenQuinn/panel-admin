@@ -1,0 +1,24 @@
+<div class="container">
+  <div ngClass="row col-12 bodyTags justify-content-center">
+    <div fxLayout="column" class="col-8 bodyTagsContent" fxLayoutAlign="center center">
+      <h1>Mots clés</h1>
+      <button class="contactButton mb-3" mat-stroked-button color="primary" (click)="toggleCreerTag();">Créer un
+        tag</button>
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of tagItems" [selectable]="selectable"
+          [ngStyle]="{'background-color': tag.color, 'color': 'white', 'cursor': 'pointer'}"
+          (click)="toggleModifierTag(tag)">
+          {{tag.label}} </mat-chip>
+      </mat-chip-list>
+    </div>
+    <div class="row col-12 justify-content-center">
+      <app-alert></app-alert>
+    </div>
+    <div class="row col-12 justify-content-center">
+      <app-creer-tag *ngIf="showCreerTag" (create)="onCreate()" class="m-5"></app-creer-tag>
+      <app-modifier-tag *ngIf="showModifierTag" [tag]="selectedTag" (delete)="onDelete()" class="m-5"></app-modifier-tag>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
